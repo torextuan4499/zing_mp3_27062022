@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  .theme-grey {
+    --primary-bg-color: #6f514c;
+    --layout-color: #57403b;
+    --sidebar-bg-color: #604a45;
+    --primary-text-color: #ffffff;
+    --secondary-text-color: #ffffff80;
+    --navigation-text-color: #dadada;
+  }
+}

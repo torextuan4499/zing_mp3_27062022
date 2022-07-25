@@ -1,10 +1,33 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+
+import { RoutesDto } from './dtos/routesDto'
+import { publicRoutes } from './routes'
+import DefautLayouts from './components/Layouts/DefautLayouts'
 
 function App() {
   return (
-    <div className="App">
-      <h1 className="text-red-500">hello</h1>
-    </div>
-  );
+    <Router>
+      <div className="App">
+        <Routes>
+          {publicRoutes.map((publicRoute: RoutesDto, index: number) => {
+            let Page = publicRoute.component
+            const Layout = DefautLayouts
+            return (
+              <Route
+                key={index}
+                path={publicRoute.path}
+                element={
+                  <Layout>
+                    <Page />
+                  </Layout>
+                }
+              />
+            )
+          })}
+        </Routes>
+      </div>
+    </Router>
+  )
 }
 
-export default App;
+export default App
