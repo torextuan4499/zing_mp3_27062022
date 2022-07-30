@@ -3,12 +3,20 @@
 @tailwind utilities;
 
 @layer base {
-  .theme-grey {
+  .theme-brown {
     --primary-bg-color: #6f514c;
     --layout-color: #57403b;
     --sidebar-bg-color: #604a45;
+    --alpha-bg-color: #ffffff1a;
     --primary-text-color: #ffffff;
     --secondary-text-color: #ffffff80;
     --navigation-text-color: #dadada;
+  }
+}
+
+@layer components {
+  .before-describe-apply {
+    @apply before:border-[10px] before:border-x-transparent before:border-t-transparent before:border-b-[#312f2f] before:absolute before:top-[-17px] before:left-1/2
+    before:-translate-x-1/2
   }
 }

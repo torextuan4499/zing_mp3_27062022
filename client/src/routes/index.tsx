@@ -1,4 +1,4 @@
-import { RoutesDto } from '../dtos/routesDto'
+import { RoutesDto } from '../dtos/RoutesDto'
 import Home from '../pages/Home'
 import Following from '../pages/Following'
 import AboutUs from '../pages/About'

@@ -1,13 +1,13 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
-import { RoutesDto } from './dtos/routesDto'
+import { RoutesDto } from './dtos/RoutesDto'
 import { publicRoutes } from './routes'
 import DefautLayouts from './components/Layouts/DefautLayouts'
 
 function App() {
   return (
     <Router>
-      <div className="App">
+      <div className="App theme-brown">
         <Routes>
           {publicRoutes.map((publicRoute: RoutesDto, index: number) => {
             let Page = publicRoute.component
