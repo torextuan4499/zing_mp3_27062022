@@ -1,10 +1,11 @@
-import { BsArrowLeft, BsArrowRight, BsSearch } from 'react-icons/bs'
-import TooltipButton from '../../../General/TooltipButton'
-
-import { BsUpload } from 'react-icons/bs'
-import { RiVipFill } from 'react-icons/ri'
-import { IoSettingsOutline } from 'react-icons/io5'
 import { ReactNode, useState } from 'react'
+import classNames from 'classnames'
+
+import TooltipButton from '../../../General/TooltipButton'
+import { BsArrowLeft, BsArrowRight, BsSearch, BsUpload } from 'react-icons/bs'
+import { RiVipFill } from 'react-icons/ri'
+import { FiTrendingUp } from 'react-icons/fi'
+import { IoSettingsOutline } from 'react-icons/io5'
 
 const iconTooltip = [
   {
@@ -127,18 +128,18 @@ const iconTooltip = [
       </svg>
     ),
     describe: 'Chủ đề',
-    id: 'theme',
   },
   {
     icon: <RiVipFill />,
     describe: 'Nâng cấp VIP',
-    id: 'vip',
   },
-  { icon: <BsUpload />, describe: 'Tải lên', id: 'upload' },
+  {
+    icon: <BsUpload />,
+    describe: 'Tải lên',
+  },
   {
     icon: <IoSettingsOutline />,
     describe: 'Cài đặt',
-    id: 'setting',
   },
 ]
 
@@ -152,7 +153,12 @@ function Header() {
           <BsArrowLeft className="text-[#ffffff] text-2xl mr-5 cursor-pointer" />
           <BsArrowRight className="text-[#897975] text-2xl mr-5" />
         </div>
-        <div className="h-10 bg-theme-primary w-[540px] rounded-t-[20px] flex items-center px-3 relative">
+        <div
+          className={classNames(
+            'h-10 w-[540px] rounded-[20px] bg-theme-alpha flex items-center px-3 relative',
+            { 'rounded-b-none bg-theme-primary': inputSearchFocus },
+          )}
+        >
           <BsSearch className="text-theme-navigation text-xl" />
           <input
             onFocus={() => setInputSearchFocus(true)}
@@ -161,11 +167,30 @@ function Header() {
             type="text"
             placeholder="Tìm kiếm bài hát, nghệ sĩ, lời bài hát..."
           />
-          <div className="bg-theme-primary absolute left-0 top-[calc(100%)] w-full px-[10px] py-[13px] shadow-[0_4px_6px_0_rgba(32,33,36,0.28)]">
-            <div className="text-theme-primary px-[10px] text-sm font-semibold">
-              Đề suất cho bạn
+
+          {inputSearchFocus && (
+            <div className="bg-theme-primary absolute left-0 top-[calc(100%)] w-full px-[10px] py-[13px] shadow-[0_4px_6px_0_rgba(32,33,36,0.28)] rounded-b-[20px]">
+              <div className="text-theme-primary px-[10px] pb-2 text-sm font-semibold opacity-90">
+                Đề suất cho bạn
+              </div>
+              <div>
+                <a
+                  className="flex items-center px-[10px] py-2 hover:bg-theme-alpha rounded"
+                  href=""
+                >
+                  <FiTrendingUp className="text-theme-navigation text-base mr-[10px] opacity-70" />
+                  <p className="text-theme-primary text-sm opacity-90">ngôi sao</p>
+                </a>
+                <a
+                  className="flex items-center px-[10px] py-2 hover:bg-theme-alpha rounded"
+                  href=""
+                >
+                  <FiTrendingUp className="text-theme-navigation text-base mr-[10px] opacity-70" />
+                  <p className="text-theme-primary text-sm opacity-90">ngôi sao</p>
+                </a>
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
       <div className="flex">

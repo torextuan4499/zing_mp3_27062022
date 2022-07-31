@@ -15,6 +15,12 @@ module.exports = {
           primary: 'var(--primary-bg-color)',
           sidebar: 'var(--sidebar-bg-color)',
           alpha: 'var(--alpha-bg-color)',
+          active: 'var(--active-bg-color)',
+        },
+      },
+      colors: {
+        theme: {
+          active: 'var(--active-border-color)',
         },
       },
     },
