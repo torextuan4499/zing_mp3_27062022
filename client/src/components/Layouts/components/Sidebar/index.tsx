@@ -1,16 +1,20 @@
 import classNames from 'classnames'
-import { ReactNode, MouseEvent, useState } from 'react'
+import { ReactNode, useState } from 'react'
+import AdvertBox from '../../../General/AdvertBox'
 import {
   BsPersonSquare,
   BsDisc,
   BsFillChatQuoteFill,
   BsReverseLayoutTextSidebarReverse,
   BsPlayCircle,
+  BsStar,
 } from 'react-icons/bs'
 import { IoRadioOutline } from 'react-icons/io5'
+import { FiMusic } from 'react-icons/fi'
+import { AiOutlineAppstore } from 'react-icons/ai'
 
 interface navigationSidebarDto {
-  id?: number
+  id: number
   icon?: ReactNode
   title?: string
   side?: string | null
@@ -19,7 +23,7 @@ interface navigationSidebarDto {
 
 const navigationsSidebar: navigationSidebarDto[] = [
   {
-    id: 0,
+    id: 1,
     icon: (
       <BsPersonSquare className="text-theme-navigation hover:text-theme-primary text-2xl mr-[10px]" />
     ),
@@ -28,14 +32,14 @@ const navigationsSidebar: navigationSidebarDto[] = [
     playIcon: false,
   },
   {
-    id: 1,
+    id: 2,
     icon: <BsDisc className="text-theme-navigation hover:text-theme-primary text-2xl mr-[10px]" />,
     title: 'Khám phá',
     side: null,
     playIcon: false,
   },
   {
-    id: 2,
+    id: 3,
     icon: (
       <BsFillChatQuoteFill className="text-theme-navigation hover:text-theme-primary text-2xl mr-[10px]" />
     ),
@@ -44,7 +48,7 @@ const navigationsSidebar: navigationSidebarDto[] = [
     playIcon: true,
   },
   {
-    id: 3,
+    id: 4,
     icon: (
       <IoRadioOutline className="text-theme-navigation hover:text-theme-primary text-2xl mr-[10px]" />
     ),
@@ -53,7 +57,7 @@ const navigationsSidebar: navigationSidebarDto[] = [
     playIcon: true,
   },
   {
-    id: 4,
+    id: 5,
     icon: (
       <BsReverseLayoutTextSidebarReverse className="text-theme-navigation hover:text-theme-primary text-2xl mr-[10px]" />
     ),
@@ -63,8 +67,43 @@ const navigationsSidebar: navigationSidebarDto[] = [
   },
 ]
 
+const belowNavSidebars: navigationSidebarDto[] = [
+  {
+    id: 6,
+    icon: <FiMusic className="text-theme-navigation hover:text-theme-primary text-2xl mr-[10px]" />,
+    title: 'Nhạc Mới',
+    side: null,
+    playIcon: true,
+  },
+  {
+    id: 7,
+    icon: (
+      <AiOutlineAppstore className="text-theme-navigation hover:text-theme-primary text-2xl mr-[10px]" />
+    ),
+    title: 'Thể Loại',
+    side: null,
+    playIcon: false,
+  },
+  {
+    id: 8,
+    icon: <BsStar className="text-theme-navigation hover:text-theme-primary text-2xl mr-[10px]" />,
+    title: 'Top 100',
+    side: null,
+    playIcon: false,
+  },
+  {
+    id: 9,
+    icon: (
+      <IoRadioOutline className="text-theme-navigation hover:text-theme-primary text-2xl mr-[10px]" />
+    ),
+    title: 'MV',
+    side: null,
+    playIcon: false,
+  },
+]
+
 function SideBar() {
-  const [navActivationIdex, setNavActivationIndex] = useState<number>(0)
+  const [navActivationIdex, setNavActivationIndex] = useState<number>(2)
   const [hoverIndex, setHoverIndex] = useState<number | null>(null)
 
   return (
@@ -76,19 +115,19 @@ function SideBar() {
         />
       </div>
       <div>
-        {navigationsSidebar.map((navigation: navigationSidebarDto, index: number) => {
+        {navigationsSidebar.map((navigation: navigationSidebarDto) => {
           return (
             <div
               className={classNames(
                 'border-l-[3px] text-theme-navigation px-6 flex items-center justify-between cursor-pointer py-2 hover:text-theme-primary border-l-transparent',
                 {
                   'border-l-theme-active bg-theme-active text-theme-primary':
-                    index === navActivationIdex,
+                    navigation.id === navActivationIdex,
                 },
               )}
-              key={index}
-              onClick={() => setNavActivationIndex(index)}
-              onMouseOver={() => setHoverIndex(index)}
+              key={navigation.id}
+              onClick={() => setNavActivationIndex(navigation.id)}
+              onMouseOver={() => setHoverIndex(navigation.id)}
               onMouseOut={() => setHoverIndex(null)}
             >
               <div className="flex flex-grow-1 items-center">
@@ -100,12 +139,46 @@ function SideBar() {
                   </span>
                 )}
               </div>
-              {navigation.playIcon && hoverIndex === index && (
+              {navigation.playIcon && hoverIndex === navigation.id && (
                 <BsPlayCircle className="text-theme-primary text-lg font-semibold hover:opacity-80" />
               )}
             </div>
           )
         })}
+      </div>
+      <div className="border-b-theme-separate border-b-[1px] mx-5 mt-5 mb-2" />
+      <div className="relative">
+        {belowNavSidebars.map((navigation: navigationSidebarDto) => {
+          return (
+            <div
+              className={classNames(
+                'border-l-[3px] text-theme-navigation px-6 flex items-center justify-between cursor-pointer py-2 hover:text-theme-primary border-l-transparent',
+                {
+                  'border-l-theme-active bg-theme-active text-theme-primary':
+                    navigation.id === navActivationIdex,
+                },
+              )}
+              key={navigation.id}
+              onClick={() => setNavActivationIndex(navigation.id)}
+              onMouseOver={() => setHoverIndex(navigation.id)}
+              onMouseOut={() => setHoverIndex(null)}
+            >
+              <div className="flex flex-grow-1 items-center">
+                {navigation.icon}
+                <p className="font-semibold text-sm">{navigation.title}</p>
+                {navigation.side && (
+                  <span className="text-theme-primary text-[8px] px-[6px] pt-[2px] pb-[1px] bg-[#ff0a0a] rounded ml-2 font-semibold tracking-widest">
+                    {navigation.side}
+                  </span>
+                )}
+              </div>
+              {navigation.playIcon && hoverIndex === navigation.id && (
+                <BsPlayCircle className="text-theme-primary text-lg font-semibold hover:opacity-80" />
+              )}
+            </div>
+          )
+        })}
+        <AdvertBox />
       </div>
     </div>
   )

@@ -20,7 +20,9 @@ module.exports = {
       },
       colors: {
         theme: {
+          primary: 'var(--primary-text-color)',
           active: 'var(--active-border-color)',
+          separate: 'var(--active-bg-color)',
         },
       },
     },
