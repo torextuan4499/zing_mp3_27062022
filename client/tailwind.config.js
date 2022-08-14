@@ -21,11 +21,12 @@ module.exports = {
       colors: {
         theme: {
           primary: 'var(--primary-text-color)',
+          secondary: 'var(--secondary-text-color)',
           active: 'var(--active-border-color)',
           separate: 'var(--active-bg-color)',
         },
       },
     },
   },
-  plugins: [],
+  plugins: [require('tailwind-scrollbar')],
 }

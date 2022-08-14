@@ -147,7 +147,7 @@ function SideBar() {
         })}
       </div>
       <div className="border-b-theme-separate border-b-[1px] mx-5 mt-5 mb-2" />
-      <div className="relative">
+      <div className="relative h-[246px] overflow-hidden hover:display-scrollbar">
         {belowNavSidebars.map((navigation: navigationSidebarDto) => {
           return (
             <div
@@ -178,7 +178,12 @@ function SideBar() {
             </div>
           )
         })}
-        <AdvertBox />
+        <AdvertBox
+          content="Đăng nhập để khám phá playlist riêng dành cho bạn"
+          isSignInBtn
+          btnContent="Đăng Nhập"
+        />
+        {/* <AdvertBox content="Nghe nhạc không quảng cáo cùng kho nhạc VIP" btnContent="Đăng Nhập" /> */}
       </div>
     </div>
   )
